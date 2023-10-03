@@ -49,7 +49,7 @@
             Campo requerido
           </ng-container>
           <ng-container *ngIf="dniControl.errors?.['minlength']">
-            El documento debe tener al menos 6 caracteres.
+            El DNI debe tener al menos 6 caracteres.
           </ng-container>
         </div>
       </div>
@@ -62,7 +62,7 @@
         <option value="2">Masculino</option>
       </select>
     </div>
-    
+
     <button [disabled]="userForm.invalid"
     class="btn btn-primary" 
     type="submit">
