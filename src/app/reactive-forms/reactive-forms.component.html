@@ -1,0 +1,72 @@
+<h1>Formulario de Registro</h1>
+<h2>Bienvenido</h2>
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <div class="mb-3 row">
+    <label class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-10">
+      <input formControlName="name" type="text" class="form-control"
+      [ngClass]="{ 'is-invalid': nameControlIsInvalid }">
+      <div class="invalid-feedback">
+        <ng-container *ngIf="nameControl.errors?.['required']">
+          Campo requerido
+        </ng-container>
+        <ng-container *ngIf="nameControl.errors?.['minlength']">
+          El nombre debe contener minimo 3 caracteres
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Control para el email -->
+  <div class="mb-3 row">
+      <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input formControlName="email" type="text" class="form-control"
+        [ngClass]="{ 'is-invalid': emailControlIsInvalid }" 
+        value="email@example.com">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="emailControl.errors?.['required']">
+            Campo requerido
+          </ng-container>
+          <ng-container *ngIf="emailControl.errors?.['email']">
+            Debe ingresar un email valido
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    
+
+  <!-- Control para el Documento -->
+    <div class="mb-3 row">
+      <label for="inputDni" class="col-sm-2 col-form-label">DNI</label>
+      <div class="col-sm-10">
+        <input formControlName="dni" type="text" class="form-control"
+        [ngClass]="{ 'is-invalid': dniControlIsInvalid }" id="inputDni">
+        <div class="invalid-feedback">
+          <ng-container *ngIf="dniControl.errors?.['required']">
+            Campo requerido
+          </ng-container>
+          <ng-container *ngIf="dniControl.errors?.['minlength']">
+            El documento debe tener al menos 6 caracteres.
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Seleccione el sexo</option>
+        <option value="1">Femenina</option>
+        <option value="2">Masculino</option>
+      </select>
+    </div>
+    
+    <button [disabled]="userForm.invalid"
+    class="btn btn-primary" 
+    type="submit">
+    Enviar
+  </button>
+</form>
+
